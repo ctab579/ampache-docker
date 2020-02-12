@@ -12,11 +12,11 @@ else
     echo "=> Using an existing volume of MySQL"
 fi
 
-if [[ -f /var/temp/ampache.cfg.php && ! -f /var/www/config/ampache.cfg.php ]]; then
-    mv /var/temp/ampache.cfg.php /var/www/config/ampache.cfg.php
+if [[ -f /var/temp/ampache.cfg.php && ! -f /var/www/ampache/config/ampache.cfg.php ]]; then
+    mv /var/temp/ampache.cfg.php /var/www/ampache/config/ampache.cfg.php
 fi
 if [[ ! -f /var/www/config/ampache.cfg.php ]]; then
-    mv /var/temp/ampache.cfg.php.dist /var/www/config/ampache.cfg.php.dist
+    mv /var/temp/ampache.cfg.php.dist /var/www/ampache/config/ampache.cfg.php.dist
 fi
 
 
@@ -30,7 +30,7 @@ cron
 (
 while true; do
     inotifywatch /media
-    php /var/www/bin/catalog_update.inc -a
+    php /var/www/ampache/bin/catalog_update.inc -a
     sleep 30
 done
 ) &
